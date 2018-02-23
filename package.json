@@ -1,0 +1,17 @@
+{
+  "name": "feizhai",
+  "version": "1.0.0",
+  "description": "feizhai",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Kimika",
+  "devDependencies": {
+    "electron": "~1.7.8",
+    "electron-reload": "^1.2.2"
+  },
+  "dependencies": {
+    "query-string": "^5.1.0"
+  }
+}

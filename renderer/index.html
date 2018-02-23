@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="index.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script|Shadows+Into+Light" rel="stylesheet">
+    <title>FeiZhai Manager</title>
+</head>
+
+<body>
+    <div class="numbers">
+        <h2 class="numbers__sum">作品總計：
+            <span id="sum-all">20</span>
+            <br>本頁顯示：
+            <span id="sum-this">10</span>
+        </h2>
+    </div>
+    <nav class="nav">
+        <button class="nav__btn" id="nav__add-search">搜尋作品</button>
+        <button class="nav__btn" id="nav__season">本季新番</button>
+        <button class="nav__btn" id="nav__search-season">季度查詢</button>
+    </nav>
+    <nav class="date">
+        <ul class="date__list">
+            <li class="date__list-item" data-day="*">
+                <a href="#" class="date__list-link">All</a>
+            </li>
+            <li class="date__list-item" data-day="1">
+                <a href="#" class="date__list-link">一</a>
+            </li>
+            <li class="date__list-item" data-day="2">
+                <a href="#" class="date__list-link">二</a>
+            </li>
+            <li class="date__list-item" data-day="3">
+                <a href="#" class="date__list-link">三</a>
+            </li>
+            <li class="date__list-item" data-day="4">
+                <a href="#" class="date__list-link">四</a>
+            </li>
+            <li class="date__list-item" data-day="5">
+                <a href="#" class="date__list-link">五</a>
+            </li>
+            <li class="date__list-item" data-day="6">
+                <a href="#" class="date__list-link">六</a>
+            </li>
+            <li class="date__list-item" data-day="7">
+                <a href="#" class="date__list-link">日</a>
+            </li>
+            <li class="date__list-item" data-day="!">
+                <a href="#" class="date__list-link">未設定</a>
+            </li>
+        </ul>
+    </nav>
+    <h1 class="no-items">還沒有任何作品</h1>
+    <div class="list">
+        <!--<div class="list__item">
+             <h1 class="list__item--custom">擅長捉弄的高木同學</h1>
+            <h2 class="list__item--native">からかい上手の高木さん</h2>
+            <h2 class="list__item--roma">Karakai Jouzu no Takagi-san</h2>
+            <div class="list__item--content">
+                <img src="https://cdn.anilist.co/img/dir/anime/reg/99468-9Ij1UpsehSVx.jpg" alt="cover" class="cover">
+                <div class="list__item--detail">
+                    <p class="date">2018/1</p>
+                    <div class="current">
+                        <button class="current__btn check">&#x2714;</button>
+                        <p class="current__num">0</p>
+                        <button class="current__btn cross">&#x2718;</button>
+                    </div>
+                    <div class="music">
+                        <button class="btn op">OP</button>
+                        <button class="btn ed">ED</button>
+                    </div>
+                    <div class="links">
+                        <button class="btn link">link1</button>
+                        <button class="btn link">link2</button>
+                    </div>
+                </div>
+            </div> 
+        </div>-->
+    </div>
+    <div class="form" id="custom_title-form">
+        <input type="text" class="form__input" id="custom_title-input" placeholder="輸入自訂標題">
+        <button class="form__btn" id="custom_title-btn">確認</button>
+    </div>
+    <div class="form" id="current_num-form">
+        <input type="text" class="form__input" id="current_num-input" placeholder="輸入集數">
+        <button class="form__btn" id="current_num-btn">確認</button>
+    </div>
+    <div class="form" id="custom_link-form">
+        <h2>連結1</h2>
+        <input type="text" class="form__input" id="custom_link-input-name-1" placeholder="輸入名稱(空白則不更改)">
+        <input type="text" class="form__input" id="custom_link-input-url-1" placeholder="輸入連結(空白則不更改)">
+        <h2>連結2</h2>
+        <input type="text" class="form__input" id="custom_link-input-name-2" placeholder="輸入名稱(空白則不更改)">
+        <input type="text" class="form__input" id="custom_link-input-url-2" placeholder="輸入連結(空白則不更改)">
+        <button class="form__btn" id="custom_link-btn">確認</button>
+    </div>
+    <div class="form" id="week-form">
+        <select name="week-select" id="week-select">
+            <option value="0">無</option>
+            <option value="1">星期一</option>
+            <option value="2">星期二</option>
+            <option value="3">星期三</option>
+            <option value="4">星期四</option>
+            <option value="5">星期五</option>
+            <option value="6">星期六</option>
+            <option value="7">星期日</option>
+        </select>
+        <button class="form__btn" id="week-btn">確認</button>
+    </div>
+</body>
+<script src="index.js"></script>
+<script src="anilist_getById.js"></script>
+
+</html>

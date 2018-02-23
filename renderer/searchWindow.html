@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="searchWindow.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+</head>
+
+<body>
+    <div class="search-bar">
+        <select name="year" id="year" style="display:none"></select>
+        <select name="season" id="season" style="display:none">
+            <option value="WINTER">冬</option>
+            <option value="SPRING">春</option>
+            <option value="SUMMER">夏</option>
+            <option value="FALL">秋</option>
+        </select>
+        <input type="text" class="search__input" placeholder="按下Enter搜尋作品標題">
+    </div>
+    <h1 id="result"></h1>
+    <div class="page">
+        <button class="page__back" style="visibility:hidden">&larr;</button>
+        <p class="current__page">1</p>
+        <button class="page__next" style="visibility:hidden">&rarr;</button>
+    </div>
+    <div class="result__container">
+        <div class="result__item" id="no-result">
+            <h3 class="title-big">No Results</h3>
+        </div>
+    </div>
+    <div class="page">
+        <button class="page__back" style="visibility:hidden">&larr;</button>
+        <p class="current__page">1</p>
+        <button class="page__next" style="visibility:hidden">&rarr;</button>
+    </div>
+</body>
+<script src="anilist_search.js" charset="utf-8"></script>
+
+</html>
