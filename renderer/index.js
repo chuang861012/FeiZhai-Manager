@@ -134,21 +134,25 @@ ipcRenderer.on("show-content", (e, data, all) => {
             btn: document.querySelector("#week-btn")
         }
     }
+    // 隱藏form
     Object.entries(form).forEach(([key, value]) => {
-        value.form.addEventListener("click", (e) => {
-            if (e.target === form[type].form) {
+        value.form.addEventListener("click", (e)=>{
+            if(e.target === form[type].form){
                 form[type].form.style.display = "none";
             }
         });
     });
+    // 設定title(enter)
     form["custom-title"].input.addEventListener("keypress", (e) => {
         if (e.keyCode === 13) {
             submit(type, id, form[type].input.value);
         }
     });
+    // 設定title按鈕
     form["custom-title"].btn.addEventListener("click", () => {
         submit(type, id, form[type].input.value);
     });
+    // 設定連結按鈕
     form["custom-links"].btn.addEventListener("click", () => {
         submit(type, id, {
             name1: form["custom-links"].name1.value,
@@ -157,6 +161,7 @@ ipcRenderer.on("show-content", (e, data, all) => {
             url2: form["custom-links"].input.value
         });
     });
+    // 設定星期按鈕
     form["set-week"].btn.addEventListener("click", () => {
         submit(type, id, form["set-week"].input.value);
     });
@@ -186,6 +191,8 @@ ipcRenderer.on("show-content", (e, data, all) => {
             id = event.target.dataset.id;
             document.getElementById("current_num-form").style.display = "flex";
         });
+
+        // 刪除作品
         deleteIcon[i].addEventListener("click", (event) => {
             dialog.showMessageBox({
                 type: "warning",
@@ -199,6 +206,7 @@ ipcRenderer.on("show-content", (e, data, all) => {
                 ipcRenderer.send("delete-anime", event.target.dataset.id);
             });
         })
+        // current +
         current_check[i].addEventListener("click", (event) => {
             // const div = document.createElement("div");
             // const p = document.createElement("p");
@@ -208,13 +216,14 @@ ipcRenderer.on("show-content", (e, data, all) => {
             // div.appendChild(p);
             // listItems[i].appendChild(div);
 
-            
+
             currentNum[i].textContent++;
 
             ipcRenderer.send("set-current", currentNum[i].dataset.id, currentNum[i].textContent);
         })
+        // current - 
         current_cross[i].addEventListener("click", (event) => {
-            if(currentNum[i].textContent <= 0){
+            if (currentNum[i].textContent <= 0) {
                 return;
             }
             // if (listItems[i].lastChild.classList && listItems[i].lastChild.classList.contains("complete")) {
@@ -225,6 +234,7 @@ ipcRenderer.on("show-content", (e, data, all) => {
         })
     }
 
+    // 設定連結
     function settingListener(settings, index) {
         settings[index].addEventListener("click", () => {
             type = settings[index].dataset.req;
@@ -233,6 +243,7 @@ ipcRenderer.on("show-content", (e, data, all) => {
         });
     };
 
+    // 已預設瀏覽器開啟連結
     function linksListener(links, index) {
         links[index].addEventListener("click", (e) => {
             shell.openExternal(e.target.dataset.url);
@@ -242,34 +253,33 @@ ipcRenderer.on("show-content", (e, data, all) => {
     //document.querySelector(".list__item").innerHTML += `<div class="complete"><p class="complete__text">Complete</p></div>`;
 });
 
-document.getElementById("current_num-form").addEventListener("click", (e) => {
-    if (e.target === document.getElementById("current_num-form")) {
-        document.getElementById("current_num-form").style.display = "none";
+// 直接設定current
+document.getElementById("current_num-btn").addEventListener("click", currentFormSubmit);
+document.getElementById("current_num-input").addEventListener("keypress", (e) => {
+    if (e.keyCode === 13) {
+        currentFormSubmit()
     }
 })
+document.getElementById("current_num-form").addEventListener("click",function(event){
+    hideForm(event,this);
+});
 
-document.getElementById("current_num-btn").addEventListener("click", () => {
+function submit(type, id, data) {
+    ipcRenderer.send(type, id, data);
+}
+
+function currentFormSubmit(){
     const num = document.getElementById("current_num-input").value;
-    if(num<0){
+    if (num < 0) {
         return;
     }
     document.querySelector(`.current__num[data-id="${id}"]`).textContent = num;
     ipcRenderer.send("set-current", id, num);
     document.getElementById("current_num-form").style.display = "none";
-})
+}
 
-document.getElementById("current_num-input").addEventListener("keypress", (e) => {
-    if (e.keyCode === 13) {
-        const num = document.getElementById("current_num-input").value;
-        if(num<0){
-            return;
-        }
-        document.querySelector(`.current__num[data-id="${id}"]`).textContent = num;
-        ipcRenderer.send("set-current", id, num);
-        document.getElementById("current_num-form").style.display = "none";
+function hideForm(event,element){
+    if (event && event.target === element) {
+        element.style.display = "none";
     }
-})
-
-function submit(type, id, data) {
-    ipcRenderer.send(type, id, data);
 }

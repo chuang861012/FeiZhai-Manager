@@ -10,7 +10,7 @@ const fs = require("fs");
 const path = require('path');
 const url = require('url');
 
-// require("electron-reload")(__dirname);
+//require("electron-reload")(__dirname);
 
 // delete
 ipcMain.on("delete-anime", (e, id) => {

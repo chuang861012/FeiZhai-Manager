@@ -124,7 +124,7 @@ query ($id: Int, $page: Int, $perPage: Int, $search: String) {
       hasNextPage
       perPage
     }
-    media (id: $id, search: $search,sort: START_DATE_DESC) {
+    media (id: $id, search: $search,sort: START_DATE_DESC,type: ANIME) {
       id
       type
       startDate{
@@ -182,7 +182,7 @@ query ($id: Int, $page: Int, $perPage: Int, $season: MediaSeason,$seasonYear: In
       hasNextPage
       perPage
     }
-    media (id: $id, season: $season,seasonYear: $seasonYear) {
+    media (id: $id, season: $season,seasonYear: $seasonYear,type: ANIME) {
       id
       type
       externalLinks{
@@ -265,15 +265,12 @@ function pageDisplay(result) {
     }
 
     /* display all result */
-    const filteredResult = result.data.Page.media.filter((e) => {
-        return e.type === "ANIME" || e.type === "TV"
-    });
-    if (filteredResult.length > 0) {
+    if (result.data.Page.media.length > 0) {
         document.getElementById("no-result").style.display = "none";
     } else {
         return;
     }
-    filteredResult.forEach(e => {
+    result.data.Page.media.forEach(e => {
         container.innerHTML += `<div class="result__item">
         <div class="result__title">
         <h3 class="title-big">${e.title.native}</h3>

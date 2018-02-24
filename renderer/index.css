@@ -271,9 +271,9 @@ body {
     padding: 1rem;
     justify-content: space-around;
 }
-
 .cover {
     height: 20rem;
+    width:auto;
     margin: 1rem;
 }
 
